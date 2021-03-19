@@ -1,11 +1,11 @@
-const bcrypt = require('bcrypt')
-const validator = require('validator')
-const User = require('../models/user')
-const Post = require('../models/post')
-const { clearImage } = require('../util/file')
-const jwt = require('jsonwebtoken')
+import bcrypt from 'bcrypt';
+import validator from 'validator';
+import User from '../models/user.js';
+import Post from '../models/post.js';
+import clearImage from '../util/file.js';
+import jwt from 'jsonwebtoken';
 
-module.exports = {
+const graphQLResolver = {
     createUser : async ({ userInput }, req) => {
 
         const existingUser =  await User.findOne({email : userInput.email})
@@ -217,9 +217,6 @@ module.exports = {
             createdAt : updatedPost.createdAt.toISOString(),
             updatedAt : updatedPost.updatedAt.toISOString()
         }
-
-
-
     },
     deletePost : async({id}, req) => {
         if(!req.isAuth){
@@ -284,3 +281,5 @@ module.exports = {
 
     }
 }
+
+export default graphQLResolver;

@@ -1,7 +1,7 @@
-const { buildSchema } = require('graphql')
+import { buildSchema } from 'graphql';
 
 
-module.exports = buildSchema(`
+ export default buildSchema(`
 
     type Post {
         _id : ID!
@@ -46,10 +46,17 @@ module.exports = buildSchema(`
         
     }
 
+    input postInputDataUpdate {
+        title : String
+        content : String
+        imageUrl : String
+        
+    }
+
     type RootMutation { 
         createUser(userInput : userDataInput) : User!
         createPost(postInput : postInputData) : Post!
-        updatePost(id : ID!, postInput : postInputData) : Post!
+        updatePost(id : ID!, postInput : postInputDataUpdate) : Post!
         deletePost(id:ID!): Boolean
         updateStatus(status: String!): User!
     }

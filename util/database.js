@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 const dbName = 'Graphql-blog'
 const url = `mongodb://localhost:27017/${dbName}`
 
