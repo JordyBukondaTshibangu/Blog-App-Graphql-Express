@@ -1,14 +1,20 @@
-const path = require('path');
-const { clearImage } = require('./util/file')
+import  path from 'path';
+import  clearImage from './util/file.js';
+import  express from 'express';
+import  bodyParser from 'body-parser';
+import './util/database.js';
+import  multer from 'multer';
+import  graphqlHTTP from 'express-graphql'
+import  graphqlSchema from './graphql/schema.js'
+import  graphqlResolver from './graphql/resolver.js'
+import  isAuth from './middleware/isAuth.js'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-require('./util/database')
-const multer = require('multer');
-const graphqlHTTP = require('express-graphql')
-const graphqlSchema = require('./graphql/schema')
-const graphqlResolver = require('./graphql/resolver')
-const isAuth = require('./middleware/isAuth')
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = dirname(__filename);
+
 const app = express();
 
 const fileStorage = multer.diskStorage({
@@ -33,7 +39,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 app.use(bodyParser.json());
-app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image');
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use((req, res, next) => {
