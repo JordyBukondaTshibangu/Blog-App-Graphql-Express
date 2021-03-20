@@ -30,8 +30,8 @@ Bellow are the links to help you installing it:
 
 ## Launch
 
-*  git clone 
-* cd 
+*  git clone git@github.com:JordyBukondaTshibangu/SIMPLE-BLOG-WITH-GraphQL-EXPRESS.git
+* cd SIMPLE-BLOG-WITH-GraphQL-EXPRESS
 * npm install 
 * npm run dev
 * Visit localhost:8080/graphql
